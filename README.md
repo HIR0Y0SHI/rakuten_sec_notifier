@@ -30,7 +30,7 @@ poetry install
 ## Howl to Run 
 
 ```bash
-poetry run python main.py
+poetry run python rakuten_sec_notifier/main.py
 ```
 
 ### chromedriver

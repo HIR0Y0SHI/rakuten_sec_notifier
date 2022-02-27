@@ -24,7 +24,7 @@ class RakutenSecCrawler:
         # chromedriverの設定
         options = Options()
         options.add_argument('--headless')
-        chrome_service = fs.Service(executable_path="./driver/chromedriver")
+        chrome_service = fs.Service(executable_path="./rakuten_sec_notifier/driver/chromedriver")
         driver = webdriver.Chrome(service=chrome_service, options=options)
         
         # ログイン画面を開く
