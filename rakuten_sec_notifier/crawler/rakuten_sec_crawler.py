@@ -33,7 +33,7 @@ class RakutenSecCrawler:
         
         # ログイン画面を開く
         driver.get(RakutenSecCrawler.RAKUTEN_LOGIN_URL)
-        sleep(0.3)
+        sleep(1)
         
         # ログインフォームを取得
         login_id_form = driver.find_element(by=By.ID, value='form-login-id')
@@ -49,11 +49,12 @@ class RakutenSecCrawler:
 
         # ログイン（クリック）
         login_btn.click()
-        sleep(0.5)
+        sleep(2)
 
         # 保有商品一覧へ遷移
         asset_total_btn = driver.find_element(by=By.ID, value='asset_total_possess_btn')
         asset_total_btn.click()
+        sleep(2)
 
         self.logger.info("Transition to the Products Page is complete!")
 
