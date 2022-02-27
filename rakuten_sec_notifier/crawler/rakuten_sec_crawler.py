@@ -1,4 +1,6 @@
+from lib2to3.pgen2 import driver
 import os
+import platform
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -10,6 +12,8 @@ from rakuten_sec_notifier.original_logger import OriginalLogger
 
 class RakutenSecCrawler:
     RAKUTEN_LOGIN_URL = 'https://www.rakuten-sec.co.jp/ITS/V_ACT_Login.html'
+    CHROME_DRIVER_PATH_MAC = './rakuten_sec_notifier/driver/chromedriver_mac'
+    CHROME_DRIVER_PATH_LINUX = './rakuten_sec_notifier/driver/chromedriver_linux'
     
     def __init__(self):
         # 環境変数の取得
@@ -24,7 +28,7 @@ class RakutenSecCrawler:
         # chromedriverの設定
         options = Options()
         options.add_argument('--headless')
-        chrome_service = fs.Service(executable_path="./rakuten_sec_notifier/driver/chromedriver")
+        chrome_service = fs.Service(executable_path=self.get_driver_path())
         driver = webdriver.Chrome(service=chrome_service, options=options)
         
         # ログイン画面を開く
@@ -67,3 +71,16 @@ class RakutenSecCrawler:
         driver.quit()
         
         return total_assets_element, valuation_profit_element
+    
+    
+    # OSによってドライバを決める
+    def get_driver_path(self):
+        driver_path = RakutenSecCrawler.CHROME_DRIVER_PATH_MAC
+        
+        pf = platform.system()
+        if pf == 'Darwin':
+            driver_path = RakutenSecCrawler.CHROME_DRIVER_PATH_MAC
+        elif pf == 'Linux':
+            driver_path = RakutenSecCrawler.CHROME_DRIVER_PATH_LINUX
+        
+        return driver_path
