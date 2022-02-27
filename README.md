@@ -36,4 +36,5 @@ poetry run python main.py
 ### chromedriver
 
 ChromeDriver 98.0.4758.102
+
 https://chromedriver.chromium.org/downloads
