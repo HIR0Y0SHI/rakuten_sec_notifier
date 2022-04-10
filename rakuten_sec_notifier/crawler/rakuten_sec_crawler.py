@@ -6,8 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome import service as fs
 from selenium.webdriver.chrome.options import Options
-from rakuten_sec_notifier.original_logger import OriginalLogger
-
+from webdriver_manager.chrome import ChromeDriverManager
 from rakuten_sec_notifier.original_logger import OriginalLogger
 
 class RakutenSecCrawler:
@@ -28,8 +27,7 @@ class RakutenSecCrawler:
         # chromedriverの設定
         options = Options()
         options.add_argument('--headless')
-        chrome_service = fs.Service(executable_path=self.get_driver_path())
-        driver = webdriver.Chrome(service=chrome_service, options=options)
+        driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         
         # ログイン画面を開く
         driver.get(RakutenSecCrawler.RAKUTEN_LOGIN_URL)
@@ -73,15 +71,3 @@ class RakutenSecCrawler:
         
         return total_assets_element, valuation_profit_element
     
-    
-    # OSによってドライバを決める
-    def get_driver_path(self):
-        driver_path = RakutenSecCrawler.CHROME_DRIVER_PATH_MAC
-        
-        pf = platform.system()
-        if pf == 'Darwin':
-            driver_path = RakutenSecCrawler.CHROME_DRIVER_PATH_MAC
-        elif pf == 'Linux':
-            driver_path = RakutenSecCrawler.CHROME_DRIVER_PATH_LINUX
-        
-        return driver_path
