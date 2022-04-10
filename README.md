@@ -27,6 +27,7 @@ export SLACK_CHANNEL="CHANNEL"
 
 * selenium
 * slack-sdk
+* webdriver-manager
 
 ```bash
 poetry install
@@ -40,6 +41,6 @@ poetry run python rakuten_sec_notifier/main.py
 
 ### chromedriver
 
-ChromeDriver 98.0.4758.102
+webdriver_managerでChromeDriverを自動更新
 
-https://chromedriver.chromium.org/downloads
+https://github.com/SergeyPirogov/webdriver_manager
