@@ -44,3 +44,4 @@ poetry run python rakuten_sec_notifier/main.py
 webdriver_managerでChromeDriverを自動更新
 
 https://github.com/SergeyPirogov/webdriver_manager
+
